@@ -1,0 +1,19 @@
+services:
+  - type: web
+    name: staybnb-api
+    runtime: python
+    rootDir: backend
+    buildCommand: pip install -r requirements.txt
+    startCommand: uvicorn app.main:app --host 0.0.0.0 --port $PORT
+    healthCheckPath: /health
+    envVars:
+      - key: PYTHON_VERSION
+        value: 3.12.8
+      - key: DATABASE_URL
+        value: sqlite:////var/data/airbnb.db
+      - key: FRONTEND_ORIGINS
+        sync: false
+    disk:
+      name: staybnb-data
+      mountPath: /var/data
+      sizeGB: 1

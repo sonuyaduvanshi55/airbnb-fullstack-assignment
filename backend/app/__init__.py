@@ -1,0 +1,1 @@
+"""Staybnb FastAPI backend package."""
